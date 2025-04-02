@@ -1,0 +1,42 @@
+{
+  "name": "docker-hello",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Basic hello world application for Node.js",
+  "author": "Robbie Minshall <rjminsha@us.ibm.com>",
+  "jest": {
+    "verbose": true,
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
+  },
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "outputDirectory": "./test",
+    "outputName": "jest-junit.xml",
+    "uniqueOutputName": "false",
+    "classNameTemplate": "{classname}-{title}",
+    "titleTemplate": "{classname}-{title}",
+    "ancestorSeparator": " › ",
+    "usePathForSuiteName": "false"
+  },
+  "scripts": {
+    "start-server": "node --max-http-header-size=65535 app.js testApp",
+    "stop-server": "killall -SIGINT testApp",
+    "test-unit": "jest ./test/unit.test.js",
+    "test-fvt": "jest ./test/fvt.test.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "nconf": "*"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "axios": "^1.7.7"
+  },
+  "overrides": {
+    "cookie": "0.7.2"
+  }
+}
