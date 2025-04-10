@@ -13,6 +13,17 @@ Eg. Running the Auth Service
 `npm install`     
 `npm run dev`    
 
+TO REGISTER AN ADMIN USER - USE POSTMAN
+MAKE A `POST` REQUEST TO `http://localhost:5001/api/auth/register`
+ADD RAW DATA (JSON):
+{
+  "username": "admin",
+  "email": "admin@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+
+
 FOR FRONTEND:
 DOWNLOAD NODE MODULES : `npm install`     
 RUN `npm run dev`
