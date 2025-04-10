@@ -123,7 +123,7 @@ const Home = () => {
             <div className="h-48 bg-[#5e5e5e] rounded-t-3xl overflow-hidden">
               {product.image ? (
                 <img
-                  src={product.image}
+                  src={`${import.meta.env.VITE_PRODUCT_SERVICE_URL}${product.image}`}
                   alt={product.name}
                   className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                 />

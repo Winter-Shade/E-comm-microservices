@@ -32,7 +32,7 @@ const serviceRegistry = {
     }
   },
   product: {
-    url: process.env.VITE_PRODUCT_SERVICE_URL || 'http://localhost:5003',
+    url: process.env.PRODUCT_SERVICE_URL || 'http://localhost:5003',
     endpoints: {
       getProducts: '/api/products'
     }

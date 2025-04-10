@@ -116,12 +116,14 @@ const Product = () => {
             className="bg-[#525252] border border-yellow-500/30 rounded-3xl shadow-[0_0_20px_#ffeb3b33] hover:shadow-[0_0_25px_#ffeb3b55] transition-all duration-300 transform hover:-translate-y-1"
           >
             <div className="h-48 bg-[#5e5e5e] rounded-t-3xl overflow-hidden">
+            {console.log(product.image)}
               {product.image ? (
                 <img
-                  src={product.image}
+                  src={`${import.meta.env.VITE_PRODUCT_SERVICE_URL}${product.image}`}
                   alt={product.name}
                   className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                 />
+                
               ) : (
                 <div className="h-full w-full flex items-center justify-center bg-[#5e5e5e]">
                   <svg
