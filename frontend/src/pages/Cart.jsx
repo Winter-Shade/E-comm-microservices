@@ -23,9 +23,10 @@ const Cart = () => {
   const [processingOrder, setProcessingOrder] = useState(false);
 
   useEffect(() => {
+    console.log('useEffect - isAuthenticated:', isAuthenticated);
     if (isAuthenticated) {
+      console.log('Fetching cart...')
       fetchCart();
-      // Pre-fill address if user has one stored in their profile
       if (currentUser?.address) {
         setShippingAddress(currentUser.address);
       }
@@ -377,131 +378,6 @@ const Cart = () => {
   }
 
   return (
-    // <div className="container mx-auto px-4 py-8">
-    //   <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
-      
-    //   <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-    //     <div className="overflow-x-auto">
-    //       <table className="min-w-full divide-y divide-gray-200">
-    //         <thead className="bg-gray-50">
-    //           <tr>
-    //             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-    //               Product
-    //             </th>
-    //             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-    //               Price
-    //             </th>
-    //             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-    //               Quantity
-    //             </th>
-    //             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-    //               Total
-    //             </th>
-    //             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-    //               Actions
-    //             </th>
-    //           </tr>
-    //         </thead>
-    //         <tbody className="bg-white divide-y divide-gray-200">
-    //           {cart.items.map((item) => (
-    //             <tr key={item._id}>
-    //               <td className="px-6 py-4 whitespace-nowrap">
-    //                 <div className="flex items-center">
-    //                   {item.image ? (
-    //                     <img 
-    //                       src={item.image} 
-    //                       alt={item.name} 
-    //                       className="h-10 w-10 rounded-full mr-4 object-cover"
-    //                     />
-    //                   ) : (
-    //                     <div className="h-10 w-10 rounded-full bg-gray-200 mr-4 flex items-center justify-center">
-    //                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    //                       </svg>
-    //                     </div>
-    //                   )}
-    //                   <div>
-    //                     <Link to={`/products/${item.productId}`} className="text-blue-600 hover:text-blue-800 font-medium">
-    //                       {item.name}
-    //                     </Link>
-    //                   </div>
-    //                 </div>
-    //               </td>
-    //               <td className="px-6 py-4 whitespace-nowrap">
-    //                 Rs{item.price.toFixed(2)}
-    //               </td>
-    //               <td className="px-6 py-4 whitespace-nowrap">
-    //                 <div className="flex items-center space-x-2">
-    //                   <button
-    //                     onClick={() => handleQuantityChange(item._id, item.quantity - 1)}
-    //                     className="bg-gray-100 rounded-md p-1 hover:bg-gray-200"
-    //                     disabled={item.quantity <= 1}
-    //                   >
-    //                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-    //                     </svg>
-    //                   </button>
-    //                   <span>{item.quantity}</span>
-    //                   <button
-    //                     onClick={() => handleQuantityChange(item._id, item.quantity + 1)}
-    //                     className="bg-gray-100 rounded-md p-1 hover:bg-gray-200"
-    //                   >
-    //                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-    //                     </svg>
-    //                   </button>
-    //                 </div>
-    //               </td>
-    //               <td className="px-6 py-4 whitespace-nowrap font-medium">
-    //                 Rs{(item.price * item.quantity).toFixed(2)}
-    //               </td>
-    //               <td className="px-6 py-4 whitespace-nowrap">
-    //                 <button
-    //                   onClick={() => handleRemoveItem(item._id)}
-    //                   className="text-red-600 hover:text-red-800"
-    //                 >
-    //                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-    //                   </svg>
-    //                 </button>
-    //               </td>
-    //             </tr>
-    //           ))}
-    //         </tbody>
-    //       </table>
-    //     </div>
-    //   </div>
-      
-    //   <div className="flex flex-wrap justify-between items-center gap-4">
-    //     <div className="flex space-x-4">
-    //       <Link 
-    //         to="/products" 
-    //         className="bg-gray-100 text-gray-700 py-2 px-6 rounded hover:bg-gray-200"
-    //       >
-    //         Continue Shopping
-    //       </Link>
-    //       <button
-    //         onClick={handleClearCart}
-    //         className="bg-red-50 text-red-600 py-2 px-6 rounded hover:bg-red-100"
-    //       >
-    //         Clear Cart
-    //       </button>
-    //     </div>
-        
-    //     <div className="bg-gray-50 p-4 rounded-lg">
-    //       <div className="flex justify-between items-center mb-2">
-    //         <span className="text-gray-600">Subtotal ({itemCount} items):</span>
-    //         <span className="font-bold text-xl">{formattedSubtotal}</span>
-    //       </div>
-    //       <button
-    //         onClick={handleCheckout}
-    //         className="w-full bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700"
-    //       >
-    //         Proceed to Checkout
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="min-h-screen bg-[#454545]">
 <div className="container mx-auto px-4 py-10 bg-[#454545] min-h-screen text-white">
   <h1 className="text-4xl font-semibold mb-8 text-white">Your Cart</h1>

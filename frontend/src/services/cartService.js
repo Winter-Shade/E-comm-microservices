@@ -6,6 +6,7 @@ let CART_SERVICE_URL = null;
 const initCartService = async () => {
   try {
     const cartService = await getServiceUrl('cart');
+
     CART_SERVICE_URL = cartService.url;
     return true;
   } catch (error) {

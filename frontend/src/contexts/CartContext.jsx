@@ -19,14 +19,11 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch cart when user changes
   useEffect(() => {
     if (isAuthenticated && currentUser) {
-      // Store userId in localStorage for services to use
       localStorage.setItem('userId', currentUser._id);
       fetchCart();
     } else {
-      // Clear cart when logged out
       setCart({ items: [] });
       localStorage.removeItem('userId');
     }
@@ -34,15 +31,16 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     if (!isAuthenticated) return;
-    
+    console.log('>>> FetchCart triggered');
     setLoading(true);
     setError(null);
-    
     try {
       const cartData = await getUserCart();
+      console.log('>>> Cart data fetched:', cartData);
       setCart(cartData);
     } catch (err) {
       console.error('Error fetching cart:', err);
+      console.error('>>> Error fetching cart:', err);
       setError('Failed to fetch your cart');
       setCart({ items: [] });
     } finally {
