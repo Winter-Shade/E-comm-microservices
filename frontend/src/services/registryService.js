@@ -1,7 +1,7 @@
 // src/services/registryService.js
 import axios from 'axios';
 
-const REGISTRY_URL = import.meta.env.VITE_REGISTRY_URL || 'http://localhost:5000';
+const REGISTRY_URL = import.meta.env.REGISTRY_URL || 'http://localhost:5000';
 
 /**
  * Get service URL from the registry

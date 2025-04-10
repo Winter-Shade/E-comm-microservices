@@ -1,12 +1,8 @@
 // src/services/cartService.js
 import axios from 'axios';
 import { getServiceUrl } from './registryService';
-
-
-// Will be set dynamically from serviceRegistry
 let CART_SERVICE_URL = null;
 
-// Initialize cart service URL
 const initCartService = async () => {
   try {
     const cartService = await getServiceUrl('cart');
@@ -18,7 +14,6 @@ const initCartService = async () => {
   }
 };
 
-// Ensure we have the cart service URL
 const ensureServiceUrl = async () => {
   if (!CART_SERVICE_URL) {
     await initCartService();

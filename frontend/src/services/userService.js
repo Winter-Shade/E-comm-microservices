@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// Base config for API requests
-const API_URL = import.meta.env.VITE_REGISTRY_URL  || 'http://localhost:5002';
+const API_URL = import.meta.env.REGISTRY_URL  || 'http://localhost:5002';
 
-// Create axios instance with default config
 const apiClient = axios.create({
   baseURL: API_URL,
   headers: {
@@ -11,7 +9,6 @@ const apiClient = axios.create({
   }
 });
 
-// Add request interceptor to include auth token
 apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -25,7 +22,6 @@ apiClient.interceptors.request.use(
   }
 );
 
-// Response interceptor for handling common errors
 apiClient.interceptors.response.use(
   (response) => {
     return response;
@@ -49,7 +45,6 @@ apiClient.interceptors.response.use(
 );
 
 const UserService = {
-  // Get the current user's profile
   getUserProfile: async () => {
     try {
       const response = await apiClient.get('/api/users/profile');
@@ -59,8 +54,7 @@ const UserService = {
       throw error;
     }
   },
-  
-  // Update the user profile
+
   updateUserProfile: async (profileData) => {
     try {
       const response = await apiClient.put('/api/users/profile', profileData);

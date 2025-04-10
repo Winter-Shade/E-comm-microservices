@@ -10,7 +10,7 @@ const productApi = axios.create({
 
 // Service registry for service discovery
 const serviceRegistryApi = axios.create({
-  baseURL: import.meta.env.VITE_REGISTRY_URL || 'http://localhost:5000',
+  baseURL: import.meta.env.REGISTRY_URL || 'http://localhost:5000',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -24,7 +24,7 @@ class ProductService {
       return response.data.url;
     } catch (error) {
       console.error('Error fetching product service URL:', error);
-      return import.meta.env.VITE_PRODUCT_SERVICE_URL || 'http://localhost:5003';
+      return import.meta.env.PRODUCT_SERVICE_URL || 'http://localhost:5003';
     }
   }
 

@@ -5,7 +5,16 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:5173', // your frontend's origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // allow preflight
+// app.use(cors());
 app.use(express.json());
 
 const serviceRegistry = {
@@ -23,7 +32,7 @@ const serviceRegistry = {
     }
   },
   product: {
-    url: process.env.PRODUCT_SERVICE_URL || 'http://localhost:5003',
+    url: process.env.VITE_PRODUCT_SERVICE_URL || 'http://localhost:5003',
     endpoints: {
       getProducts: '/api/products'
     }
