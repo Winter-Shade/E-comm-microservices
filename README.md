@@ -14,7 +14,7 @@ Eg. Running the Auth Service
 `npm run dev`    
     
 TO REGISTER AN ADMIN USER - USE POSTMAN    
-MAKE A `POST` REQUEST TO `http://localhost:5001/api/auth/register`    
+MAKE A `POST` REQUEST TO `http://localhost:5001/api/auth/register` <use auth service port no. here>.      
 ADD RAW DATA (JSON):        
    
 {      
